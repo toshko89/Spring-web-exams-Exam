@@ -34,7 +34,7 @@ public class UserService {
     }
 
     public User getUserById(long id) {
-        return this.userRepo.findUserById(id).orElse(null);
+        return this.userRepo.findUserById(id);
     }
 
     public User register(UserRegisterDTO userRegisterDTO) {
