@@ -1,5 +1,6 @@
 package com.example.exam.service;
 
+import com.example.exam.model.Offer;
 import com.example.exam.model.User;
 import com.example.exam.model.dto.UserLoginDTO;
 import com.example.exam.model.dto.UserRegisterDTO;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -91,7 +93,7 @@ public class UserService {
                     .setEmail("todor@abv.bg");
 
             User user2 = new User()
-                    .setUsername("petkov")
+                    .setUsername("petko")
                     .setPassword(passwordEncoder.encode("123123"))
                     .setEmail("petko@abv.bg");
 
@@ -106,5 +108,17 @@ public class UserService {
 
             this.userRepo.saveAll(users);
         }
+    }
+
+    public User findUserById(long id) {
+        return this.userRepo.findUserById(id);
+    }
+
+    public Set<Offer> findAllBoughtItems(long id) {
+        return this.userRepo.findUserById(id).getBoughtOffers();
+    }
+
+    public void saveUser(User buyer) {
+        this.userRepo.save(buyer);
     }
 }

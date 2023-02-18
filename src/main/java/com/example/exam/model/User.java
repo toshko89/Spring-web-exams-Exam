@@ -2,6 +2,8 @@ package com.example.exam.model;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -18,6 +20,12 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "seller")
+    private Set<Offer> offers;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Offer> boughtOffers;
+
     public User() {
     }
 
@@ -32,6 +40,26 @@ public class User {
 
     public String getUsername() {
         return username;
+    }
+
+    public Set<Offer> getOffers() {
+        return offers;
+    }
+
+
+
+    public User setOffers(Set<Offer> offers) {
+        this.offers = offers;
+        return this;
+    }
+
+    public Set<Offer> getBoughtOffers() {
+        return boughtOffers;
+    }
+
+    public User setBoughtOffers(Set<Offer> boughtOffers) {
+        this.boughtOffers = boughtOffers;
+        return this;
     }
 
     public User setUsername(String username) {
