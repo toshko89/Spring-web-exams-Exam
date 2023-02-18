@@ -42,9 +42,6 @@ public class HomeController {
         model.addAttribute("otherUsersOffers",otherUsersOffers);
         model.addAttribute("allBoughtItems",allBoughtItems);
 
-        System.out.println(allUserOffer);
-        System.out.println(otherUsersOffers);
-
         return "home";
     }
 }
